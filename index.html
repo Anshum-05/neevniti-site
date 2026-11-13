@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeevNiti — Stop searching circulars. Start shipping.</title>
+<meta name="description" content="NeevNiti is an AI compliance analyst for Indian financial services. Ask in plain words, get a cited answer from SEBI, RBI, UIDAI, MCA, AMFI and Sahamati documents.">
+<meta property="og:title" content="NeevNiti — Stop searching circulars. Start shipping.">
+<meta property="og:description" content="Cited compliance answers from India's financial regulators. Invite-only preview.">
+<meta property="og:url" content="https://neevniti.com">
+<meta name="theme-color" content="#0f1a33">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230f1a33'/><rect x='41' y='13.0' width='10' height='7.6' opacity='.4' fill='%23fff'/><rect x='34' y='20.6' width='17' height='7.6' opacity='.6' fill='%23fff'/><rect x='27' y='28.2' width='24' height='7.6' opacity='.8' fill='%23fff'/><rect x='20' y='35.8' width='31' height='7.6' fill='%23fff'/><rect x='13' y='43.4' width='38' height='7.6' fill='%230f9d6b'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f1a33;--ink2:#1d2b4f;--muted:#5b6478;--paper:#fbf8f3;--card:#fff;
+  --gold:#0f9d6b;--gold2:#bdf0d8;--goldd:#0a7a52;--sky:#dbe8ff;--line:#ebe4d8;--mint:#2bb38a;
+  --r:20px;--max:1120px;
+  --demo:"mailto:hello@neevniti.com";
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+h1,h2,h3{letter-spacing:-.025em;line-height:1.08;font-weight:800}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;padding:15px 26px;border-radius:999px;background:var(--gold);color:#fff;box-shadow:0 10px 30px -10px rgba(15,157,107,.8);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(15,157,107,.95)}
+.btn svg{width:18px;height:18px;transition:transform .2s}
+.btn:hover svg{transform:translateX(3px)}
+.btn.sm{padding:10px 18px;font-size:.92rem}
+.pulse{position:relative}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(15,157,107,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(15,157,107,0)}100%{box-shadow:0 0 0 0 rgba(15,157,107,0)}}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
+nav.solid{background:rgba(251,248,243,.9);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.mark{width:28px;height:26px;display:block}
+
+/* hero */
+.hero{position:relative;padding:150px 0 90px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:-1;animation:float 14s ease-in-out infinite}
+.b1{width:520px;height:520px;background:#c8f1de;top:-160px;right:-120px}
+.b2{width:380px;height:380px;background:#d6e4ff;bottom:-140px;left:-120px;animation-delay:-6s}
+@keyframes float{50%{transform:translate(30px,40px) scale(1.06)}}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:120px}}
+.tag{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:7px 14px 7px 8px;border-radius:999px;font-size:.84rem;font-weight:600;color:var(--muted);margin-bottom:24px}
+.tag b{background:var(--ink);color:#fff;border-radius:999px;padding:2px 9px;font-size:.74rem;letter-spacing:.04em}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+.hl{position:relative;white-space:nowrap}
+.hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.32em;background:var(--gold2);z-index:-1;border-radius:4px;transform-origin:left;animation:mark 1s .5s cubic-bezier(.6,0,.2,1) both}
+@keyframes mark{from{transform:scaleX(0)}}
+.lead{font-size:1.18rem;color:var(--muted);margin:22px 0 32px;max-width:34ch}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.trust{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--muted);font-weight:500}
+.trust svg{width:16px;height:16px;color:var(--mint)}
+
+/* chat demo card */
+.chat{background:var(--ink);border-radius:26px;padding:22px;color:#e8ecf5;box-shadow:0 40px 80px -30px rgba(15,26,51,.55);position:relative;transform:rotate(1.2deg)}
+.chat-top{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:.82rem;color:#9aa6c2}
+.chat-top i{width:10px;height:10px;border-radius:50%;background:#33415f}
+.chat-top i:first-child{background:var(--gold)}
+.chat-top span{margin-left:auto;display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(43,179,138,.7);animation:pulse 2s infinite}
+.bubble{border-radius:16px;padding:13px 15px;font-size:.95rem;max-width:88%}
+.me{background:#2a3a63;margin-left:auto;border-bottom-right-radius:5px;min-height:46px}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--gold);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.ai{background:#17244a;margin-top:14px;border-bottom-left-radius:5px;position:relative;overflow:hidden;opacity:0;transform:translateY(10px);transition:all .5s}
+.ai.show{opacity:1;transform:none}
+.verdict{display:inline-flex;align-items:center;gap:6px;background:rgba(43,179,138,.16);color:#6fe0bc;font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+.ln{height:9px;border-radius:5px;background:rgba(255,255,255,.18);margin:8px 0;filter:blur(1.2px)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid rgba(15,157,107,.5);color:var(--gold);filter:blur(1.5px)}
+.lock{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(23,36,74,0) 10%,rgba(23,36,74,.92) 70%)}
+.lock a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);font-weight:700;font-size:.88rem;padding:10px 16px;border-radius:999px;margin-top:70px;box-shadow:0 10px 25px -8px rgba(0,0,0,.5);transition:transform .2s}
+.lock a:hover{transform:scale(1.04)}
+.lock svg{width:16px;height:16px}
+.float-badge{position:absolute;z-index:3;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;font-size:.8rem;font-weight:700;box-shadow:0 18px 40px -16px rgba(15,26,51,.4);display:flex;align-items:center;gap:8px;animation:bob 5s ease-in-out infinite}
+.float-badge svg{width:18px;height:18px}
+.fb1{top:-18px;left:-26px;transform:rotate(-4deg)}
+.fb2{bottom:-20px;right:-14px;animation-delay:-2.5s}
+@keyframes bob{50%{translate:0 -8px}}
+@media(max-width:560px){.fb1{left:-6px}.fb2{right:-4px}}
+
+/* sources marquee */
+.marquee{border-block:1px solid var(--line);background:#fff;overflow:hidden;padding:22px 0}
+.track{display:flex;gap:56px;width:max-content;animation:scroll 22s linear infinite}
+.track span{font-weight:800;font-size:1.3rem;color:#b7aea0;letter-spacing:.02em;display:flex;align-items:center;gap:56px}
+.track span::after{content:"✦";color:var(--gold);font-size:.9rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{padding:100px 0}
+.center{text-align:center;max-width:640px;margin:0 auto 54px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--goldd);margin-bottom:12px}
+.center h2{font-size:clamp(2rem,4vw,3rem)}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+@media(max-width:820px){.ba{grid-template-columns:1fr}.arrow{transform:rotate(90deg);margin:auto}}
+.pile{position:relative;height:250px}
+.doc{position:absolute;width:62%;height:190px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 10px 30px -18px rgba(15,26,51,.35)}
+.doc b{font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.doc i{display:block;height:6px;border-radius:3px;background:#eee6d9;margin:9px 0}
+.doc i:nth-child(odd){width:80%}
+.d1{left:4%;top:30px;transform:rotate(-8deg)}.d2{left:18%;top:10px;transform:rotate(3deg)}.d3{left:32%;top:40px;transform:rotate(-2deg)}
+.label{text-align:center;font-weight:700;margin-top:6px}
+.label small{display:block;font-weight:500;color:var(--muted);font-size:.9rem}
+.arrow{width:64px;height:64px;border-radius:50%;background:var(--ink);display:grid;place-items:center;color:var(--gold)}
+.arrow svg{width:26px;height:26px}
+.one{background:var(--ink);color:#e8ecf5;border-radius:18px;padding:22px;height:190px;margin:30px auto 0;width:80%;box-shadow:0 26px 50px -24px rgba(15,26,51,.6)}
+.one .verdict{margin-bottom:14px}
+.one i{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.2);margin:10px 0}
+.one i:nth-child(3){width:70%}
+
+/* golden circle */
+.gc{display:grid;grid-template-columns:420px 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.gc{grid-template-columns:1fr}.rings{margin:auto}}
+.rings{position:relative;width:min(420px,88vw);aspect-ratio:1}
+.ring{position:absolute;border-radius:50%;display:flex;justify-content:center;font-weight:800;letter-spacing:.14em;font-size:.8rem;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.ring:hover,.ring.on{transform:scale(1.03)}
+.r1{inset:0;background:#fff;border:2px solid var(--line);color:var(--muted);padding-top:7%}
+.r2{inset:17%;background:#d9f5e9;color:var(--goldd);padding-top:7%}
+.r3{inset:34%;background:var(--ink);color:var(--gold);align-items:center;font-size:1rem;box-shadow:0 20px 50px -14px rgba(15,26,51,.6)}
+.ring.on{box-shadow:0 0 0 6px rgba(15,157,107,.35)}
+.layers{display:grid;gap:16px}
+.layer{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:all .3s;cursor:pointer}
+.layer.on{border-color:var(--gold);box-shadow:0 18px 40px -22px rgba(10,122,82,.45);transform:translateX(6px)}
+.ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#e4f7ef;color:var(--goldd)}
+.ico svg{width:26px;height:26px}
+.layer h3{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--goldd);margin-bottom:6px;font-weight:800}
+.layer p{font-size:1.15rem;font-weight:700;line-height:1.35}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:820px){.feats{grid-template-columns:1fr}}
+.feat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;transition:transform .25s,box-shadow .25s}
+.feat:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(15,26,51,.45)}
+.feat .ico{margin-bottom:18px}
+.feat h3{font-size:1.25rem;margin-bottom:6px}
+.feat p{color:var(--muted)}
+
+/* final cta */
+.final{background:var(--ink);border-radius:32px;padding:80px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.final::before,.final::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:var(--gold);filter:blur(90px);opacity:.25}
+.final::before{top:-120px;left:-80px}.final::after{bottom:-140px;right:-60px}
+.final h2{font-size:clamp(2.1rem,4.6vw,3.4rem);max-width:16ch;margin:0 auto 16px;position:relative}
+.final p{color:#b8c2d9;font-size:1.1rem;margin-bottom:34px;position:relative}
+.final .btn{position:relative;color:#fff;font-size:1.08rem;padding:18px 32px}
+.final small{display:block;margin-top:18px;color:#8e9ab8;position:relative}
+
+footer{padding:40px 0 110px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--ink);font-weight:600}
+footer p{width:100%;font-size:.78rem;color:#9a9fab;margin-top:6px}
+
+/* mobile sticky cta */
+.sticky{position:fixed;left:14px;right:14px;bottom:14px;z-index:60;display:none}
+.sticky .btn{width:100%;justify-content:center}
+@media(max-width:720px){.sticky{display:block}.navbtn{display:none}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg class="mark" viewBox="0 0 30 28" aria-hidden="true"><rect x="23.0" y="0.0" width="7" height="5.6" opacity=".35" fill="#0f1a33"/><rect x="16.2" y="5.6" width="13.8" height="5.6" opacity=".55" fill="#0f1a33"/><rect x="11.5" y="11.2" width="18.5" height="5.6" opacity=".75" fill="#0f1a33"/><rect x="5.8" y="16.8" width="24.2" height="5.6" fill="#0f1a33"/><rect x="0.0" y="22.4" width="30" height="5.6" fill="#0f9d6b"/></svg>NeevNiti</a>
+    <a class="btn sm navbtn demo" href="#">Request demo</a>
+  </div>
+</nav>
+
+<!-- HOOK -->
+<header class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div>
+      <div class="tag"><b>NEW</b> AI compliance analyst for Indian finance</div>
+      <h1>Stop searching circulars. <span class="hl">Start shipping.</span></h1>
+      <p class="lead">Ask any compliance question. Get a cited answer in seconds.</p>
+      <div class="cta-row">
+        <a class="btn pulse demo" href="#">Request demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Invite-only preview</span>
+      </div>
+    </div>
+
+    <div style="position:relative">
+      <div class="float-badge fb1"><svg viewBox="0 0 24 24" fill="none" stroke="#2bb38a" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Every answer cited</div>
+      <div class="chat" aria-label="NeevNiti chat preview">
+        <div class="chat-top"><i></i><i></i><i></i><span><em class="dot"></em>NeevNiti</span></div>
+        <div class="bubble me"><span id="typed"></span><span class="cursor"></span></div>
+        <div class="bubble ai" id="ai">
+          <div class="verdict"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Answer ready · 3 sources</div>
+          <div class="ln" style="width:92%"></div><div class="ln" style="width:78%"></div><div class="ln" style="width:85%"></div>
+          <div class="chips"><span class="chip">SEBI</span><span class="chip">RBI</span><span class="chip">UIDAI</span></div>
+          <div class="lock"><a class="demo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Unlock in the demo</a></div>
+        </div>
+      </div>
+      <div class="float-badge fb2"><svg viewBox="0 0 24 24" fill="none" stroke="#0a7a52" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Answers in seconds</div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-label="Regulators covered">
+  <div class="track">
+    <span>SEBI</span><span>RBI</span><span>UIDAI</span><span>MCA</span><span>AMFI</span><span>Sahamati</span>
+    <span>SEBI</span><span>RBI</span><span>UIDAI</span><span>MCA</span><span>AMFI</span><span>Sahamati</span>
+  </div>
+</div>
+
+<!-- PAIN → RELIEF -->
+<section>
+  <div class="wrap">
+    <div class="center rv"><div class="kicker">The problem</div><h2>Your launch is stuck in a 40&#8209;page PDF.</h2></div>
+    <div class="ba rv">
+      <div>
+        <div class="pile">
+          <div class="doc d1"><b>MASTER CIRCULAR</b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="doc d2"><b>AMENDMENT</b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="doc d3"><b>CLARIFICATION</b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="label">Before<small>Endless circulars and amendments</small></div>
+      </div>
+      <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div>
+        <div class="pile">
+          <div class="one"><div class="verdict">✓ Yes, with one condition</div><i></i><i></i><i></i><div class="chips"><span class="chip" style="filter:none">Source linked</span></div></div>
+        </div>
+        <div class="label">With NeevNiti<small>One clear, cited answer</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOLDEN CIRCLE -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="center rv"><div class="kicker">Why we exist</div><h2>Compliance should unblock you, not slow you down.</h2></div>
+    <div class="gc rv">
+      <div class="rings" aria-hidden="true">
+        <div class="ring r1" data-k="what">WHAT</div>
+        <div class="ring r2" data-k="how">HOW</div>
+        <div class="ring r3 on" data-k="why">WHY</div>
+      </div>
+      <div class="layers">
+        <div class="layer on" data-k="why"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.5 12 21 12 21z"/></svg></div><div><h3>Why</h3><p>Great financial products shouldn't wait on rule-hunting.</p></div></div>
+        <div class="layer" data-k="how"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/></svg></div><div><h3>How</h3><p>We read the rulebook, so your team doesn't have to.</p></div></div>
+        <div class="layer" data-k="what"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div><div><h3>What</h3><p>NeevNiti: ask in plain words, get a cited answer.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="feats">
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>Ask like a human</h3><p>No keywords. Just your question.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><h3>Yes or No, first</h3><p>The verdict up front, then the why.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><h3>Proof attached</h3><p>Every answer links to its circular.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section style="padding-top:10px">
+  <div class="wrap">
+    <div class="final rv">
+      <h2>Bring your toughest compliance question.</h2>
+      <p>We'll answer it live, with sources.</p>
+      <a class="btn pulse demo" href="#">Request demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <small>Invite-only preview · hello@neevniti.com</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 NeevNiti · <em>Neev</em> = foundation, <em>Niti</em> = policy</span>
+    <span>Built by <a href="https://www.linkedin.com/in/anshum-aman" target="_blank" rel="noopener">Anshum Aman</a></span>
+    <p>NeevNiti is a research aid, not legal advice. Always confirm with the original regulation.</p>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn demo" href="#">Request demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+
+<script>
+// demo links
+const mail="mailto:hello@neevniti.com?subject="+encodeURIComponent("NeevNiti demo request")+"&body="+encodeURIComponent("Name:\nCompany / role:\nOne question you'd like answered:\n");
+document.querySelectorAll(".demo").forEach(a=>a.href=mail);
+
+// nav background on scroll
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>20),{passive:true});
+
+// typing demo
+const qs=["Can we onboard an NRI client through our eKYC flow?","Is this mutual fund flow allowed in non-demat mode?","Do we need fresh consent for this data share?"];
+const el=document.getElementById("typed"),ai=document.getElementById("ai");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let qi=0;
+function type(){
+  const q=qs[qi];ai.classList.remove("show");el.textContent="";
+  if(reduce){el.textContent=q;ai.classList.add("show");return}
+  let i=0;const t=setInterval(()=>{el.textContent=q.slice(0,++i);if(i>=q.length){clearInterval(t);setTimeout(()=>ai.classList.add("show"),500);setTimeout(()=>{qi=(qi+1)%qs.length;type()},5200)}},38);
+}
+type();
+
+// golden circle interaction
+const items=document.querySelectorAll("[data-k]");
+function on(k){items.forEach(x=>x.classList.toggle("on",x.dataset.k===k))}
+items.forEach(x=>{x.addEventListener("mouseenter",()=>on(x.dataset.k));x.addEventListener("click",()=>on(x.dataset.k))});
+let ks=["why","how","what"],ki=0,auto=setInterval(()=>{ki=(ki+1)%3;on(ks[ki])},2600);
+document.querySelector(".gc").addEventListener("mouseenter",()=>clearInterval(auto));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
